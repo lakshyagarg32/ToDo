@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  mysql-container:
+    image: 05247af918647d8d063d2e880cc65c1546a7d616cde1e6c6f5dab1ca091f6cf8
+    network_mode:  "bridge"
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=lakshya32
+      - MYSQL_DATABASE=test
+
+  todo-docker-compose:
+    image: f46864130fe409b1691d6b33f17a29525f64d6f7a50ad0811c9b35a41d67b003
+    network_mode: "bridge"
+    ports:
+      - 8080:8080
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
